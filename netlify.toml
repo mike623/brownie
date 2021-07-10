@@ -1,0 +1,8 @@
+# netlify.toml
+[build]
+  functions = "sls/functions/"
+
+[[redirects]]
+  from = '/f/*'
+  to = '/.netlify/functions/:splat'
+  status = 200
