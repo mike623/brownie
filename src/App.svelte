@@ -30,8 +30,8 @@
     });
   };
   const handleSearch = async (event) => {
-    if (!event?.detail.text) return (movies = defaultMovie);
     selectedMovie = undefined;
+    if (!event?.detail.text) return (movies = defaultMovie);
     const { results } = await API.searchMovies(event?.detail?.text);
     selectMoive(results[0]);
     movies = results;
