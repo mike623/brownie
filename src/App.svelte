@@ -45,18 +45,30 @@
 <main
   class="h-full overflow-y-auto backdrop-filter backdrop-blur-lg bg-black bg-opacity-50"
 >
-  <Nav on:search={handleSearch} />
-  <Carosel
-    {movies}
-    {selectedMovie}
-    on:selectMoive={({ detail }) => selectMoive(detail.movie, detail.e)}
-  />
-  <MovieDetail {selectedMovie} />
-
-  <div class="mt-8 w-48">
-    <div class="border-t border-white w-20 mb-6" />
-    <img src={"assets/tmdb.svg"} alt="" />
-  </div>
+  <img class="m-5 w-10 h-10" src="assets/brownie.png" alt="" />
+  <section class="px-16 mt-16 mb-16">
+    <Nav on:search={handleSearch} />
+    <Carosel
+      {movies}
+      {selectedMovie}
+      on:selectMoive={({ detail }) => selectMoive(detail.movie, detail.e)}
+    />
+    <MovieDetail {selectedMovie} />
+    <div class="mt-36">
+      <div class="border-t border-white w-20 mb-6" />
+      <div class="w-48">
+        <img src={"assets/tmdb.svg"} alt="" />
+      </div>
+      <br />
+      <div class="text-xs">
+        Icons made by
+        <a href="https://www.freepik.com" title="Freepik">Freepik</a>
+        from
+        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a
+        >
+      </div>
+    </div>
+  </section>
 </main>
 
 <style>
@@ -71,7 +83,6 @@
     left: 0;
   }
   main {
-    padding: 70px;
     position: relative;
   }
 </style>
