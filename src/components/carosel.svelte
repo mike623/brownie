@@ -7,6 +7,9 @@
   function selectMoive(movie, e) {
     dispatch("selectMoive", { movie, e });
   }
+  function isSelected(movie: MovieResult) {
+    return selectedMovie?.id === movie.id;
+  }
 </script>
 
 {#if movies.length > 0}
@@ -17,7 +20,7 @@
       <div
         on:click={(e) => selectMoive(movie, e)}
         class="poster-preview opacity-30 cursor-pointer"
-        class:opacity-100={selectedMovie?.id === movie.id}
+        class:opacity-100={isSelected(movie)}
         style="background-image: url({API.getImagePath(
           movie.poster_path || movie.backdrop_path
         )});"
