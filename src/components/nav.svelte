@@ -61,7 +61,7 @@
       class:opacity-0={showSeachBar}
       class:opacity-1={!showSeachBar}
       class:pointer-events-none={showSeachBar}
-      class="mt-1 text-xl flex items-center justify-between w-80 absolute"
+      class="mt-1 text-xl flex items-center justify-between max-w-xs w-full absolute"
     >
       <div class="">MOVIES</div>
       <!-- <div class="">SHOWS</div> -->
