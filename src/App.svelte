@@ -52,6 +52,11 @@
     on:selectMoive={({ detail }) => selectMoive(detail.movie, detail.e)}
   />
   <MovieDetail {selectedMovie} />
+
+  <div class="mt-8 w-48">
+    <div class="border-t border-white w-20 mb-6" />
+    <img src={"assets/tmdb.svg"} alt="" />
+  </div>
 </main>
 
 <style>
