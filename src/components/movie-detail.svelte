@@ -4,7 +4,7 @@
 </script>
 
 {#if selectedMovie}
-  <div class="movie-detail">
+  <div class="movie-detail w-full">
     {#if selectedMovie.video}
       <div class="movie-detail--video">
         <!-- <video src={selectedMovie.video} /> -->

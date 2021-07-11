@@ -22,7 +22,8 @@
         class="poster-preview opacity-30 cursor-pointer"
         class:opacity-100={isSelected(movie)}
         style="background-image: url({API.getImagePath(
-          movie.poster_path || movie.backdrop_path
+          movie.poster_path || movie.backdrop_path,
+          { w: 185 }
         )});"
       />
     {/each}

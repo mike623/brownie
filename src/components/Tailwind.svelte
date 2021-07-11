@@ -9,7 +9,6 @@
     padding: 0;
     color: #ffffff;
     font-size: 16px;
-    font-family: "Helvetica Neue";
   }
   button {
     all: unset;
