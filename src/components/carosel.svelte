@@ -1,9 +1,9 @@
 <script lang="ts">
-  import API, { MovieResult, MovieResponse } from "../api";
+  import API, { type MovieResult, type MovieResponse } from "../api";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   export let movies: MovieResult[] = [];
-  export let selectedMovie: MovieResponse;
+  export let selectedMovie: MovieResponse | undefined;
   function selectMoive(movie, e) {
     dispatch("selectMoive", { movie, e });
   }
@@ -16,8 +16,10 @@
   <div
     class="flex -mx-5 px-5 py-10 post-list scrollbar scrollbar-thumb-gray-100 scrollbar-track-transparent scrollbar-thin"
   >
-    {#each movies as movie}
+    {#each movies as movie, i}
       <div
+        tabindex={i}
+        role="button"
         on:click={(e) => selectMoive(movie, e)}
         class="poster-preview opacity-30 cursor-pointer"
         class:opacity-100={isSelected(movie)}

@@ -1,35 +1,22 @@
-<svelte:head>
-	<title>Brownie</title>
-  <meta name="author" content="Mike wong">
-  <meta name="description" content="Another movie searcher made by svelte">
-	<html lang="en" />
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-</svelte:head>
-
 <script lang="ts">
-  import Tailwind from "./components/Tailwind.svelte";
-  import Nav from "./components/nav.svelte";
-  import Carosel from "./components/carosel.svelte";
-  import MovieDetail from "./components/movie-detail.svelte";
+  import logo from "$lib/assets/brownie.png";
+  import tmdbSvg from "$lib/assets/tmdb.svg";
+  import Nav from "../components/nav.svelte";
+  import Carosel from "../components/carosel.svelte";
+  import MovieDetail from "../components/movie-detail.svelte";
 
-  import API, { MovieResult, MovieResponse } from "./api";
+  import API, { type MovieResult, type MovieResponse } from "../api";
+  console.log("🚀 ~ file: App.svelte:24 ~ API:", API);
   import { onMount } from "svelte";
 
-  export let image_url: string;
-  export let movies: MovieResult[] = [];
-  export let selectedMovie: MovieResponse;
+  let image_url: string;
+  let movies: MovieResult[] = [];
+  let selectedMovie: MovieResponse | undefined;
   let defaultMovie: MovieResult[] = [];
 
   onMount(async () => {
     const { results } = await API.getMovies();
+    if (!results) return;
     selectMoive(results[0]);
     movies = results;
     defaultMovie = results;
@@ -46,9 +33,11 @@
     });
   };
   const handleSearch = async (event) => {
+    if (!selectedMovie) return;
     selectedMovie = undefined;
     if (!event?.detail.text) return (movies = defaultMovie);
     const { results } = await API.searchMovies(event?.detail?.text);
+    if (!results) return;
     selectMoive(results[0]);
     movies = results;
   };
@@ -61,7 +50,7 @@
 <main
   class="h-full overflow-y-auto backdrop-filter backdrop-blur-lg bg-black bg-opacity-50"
 >
-  <img class="m-5 w-10 h-10" src="assets/brownie.png" alt="" />
+  <img class="m-5 w-10 h-10" src={logo} alt="" />
   <section class="px-16 mt-16 mb-16">
     <Nav on:search={handleSearch} />
     <Carosel
@@ -69,11 +58,14 @@
       {selectedMovie}
       on:selectMoive={({ detail }) => selectMoive(detail.movie, detail.e)}
     />
-    <MovieDetail {selectedMovie} />
+    {#if selectedMovie}
+      <MovieDetail {selectedMovie} />
+    {/if}
+
     <div class="mt-36">
       <div class="border-t border-white w-20 mb-6" />
       <div class="w-48">
-        <img src={"assets/tmdb.svg"} alt="" />
+        <img src={tmdbSvg} alt="" />
       </div>
       <br />
       <div class="text-xs">
