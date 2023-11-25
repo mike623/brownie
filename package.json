@@ -35,7 +35,7 @@
 	"type": "module",
 	"dependencies": {
 		"moviedb-promise": "^4.0.3",
-		"svelte-feather-icons": "^4.0.1",
-		"@beyonk/svelte-carousel": "^2.8.0"
+		"svelte-carousel": "^1.0.25",
+		"svelte-feather-icons": "^4.0.1"
 	}
 }
