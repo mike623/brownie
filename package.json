@@ -39,6 +39,7 @@
 	"dependencies": {
 		"moviedb-promise": "^4.0.3",
 		"svelte-carousel": "^1.0.25",
-		"svelte-feather-icons": "^4.0.1"
+		"svelte-feather-icons": "^4.0.1",
+		"sveltekit-search-params": "^1.0.15"
 	}
 }

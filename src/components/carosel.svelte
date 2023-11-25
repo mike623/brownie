@@ -1,13 +1,19 @@
 <script lang="ts">
   import Carousel from "svelte-carousel";
   import type { MovieResult, MovieResponse } from "../api";
+  import { queryParam } from "sveltekit-search-params";
   import { createEventDispatcher } from "svelte";
   import { getImagePath } from "$lib";
   const dispatch = createEventDispatcher();
   export let movies: MovieResult[] = [];
-  export let selectedMovie: MovieResponse | undefined;
+  export let selectedMovie: MovieResult | MovieResponse | undefined;
+  let idW = queryParam("id");
+  let id = $idW ?? 0
 
+  $: selectedMovie = movies.find((movie) => (movie?.id ?? 0) === (id ?? 0));
+ 
   function selectMoive(movie, e) {
+    idW.set(movie.id);
     dispatch("selectMoive", { movie, e });
   }
 </script>
@@ -22,8 +28,8 @@
             tabindex={i}
             role="checkbox"
             on:click={(e) => selectMoive(movie, e)}
-            class:opacity-100={movie.id === selectedMovie?.id}
-            class:opacity-30={movie.id !== selectedMovie?.id}
+            class:opacity-100={movie.id+"" === ($idW || 0)+""}
+            class:opacity-30={movie.id+"" !== ($idW || 0)+""}
             class=" cursor-pointer w-full h-full bg-no-repeat bg-center bg-cover transition-opacity aria-checked:opacity-100"
             style="background-image: url({getImagePath(
               movie.poster_path || movie.backdrop_path,
