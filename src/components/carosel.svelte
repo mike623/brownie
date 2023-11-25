@@ -4,6 +4,9 @@
   import { queryParam } from "sveltekit-search-params";
   import { createEventDispatcher, onMount } from "svelte";
   import { getImagePath } from "$lib";
+  import MediaQuery from "svelte-media-queries";
+
+  let matches: boolean;
   const dispatch = createEventDispatcher();
   export let movies: MovieResult[] = [];
   export let selectedMovie: MovieResult | MovieResponse | undefined;
@@ -26,11 +29,14 @@
   onMount(() => {
     goToStartPage();
   });
+  $: particlesToShow = matches ? 5 : 1;
 </script>
 
+<MediaQuery query="(min-width: 760px)" bind:matches />
+<span>{matches}</span>
 {#if movies.length > 0}
   <!-- class="flex -mx-5 px-5 py-10 post-list scrollbar scrollbar-thumb-gray-100 scrollbar-track-transparent scrollbar-thin" -->
-  <Carousel bind:this={carousel} particlesToShow={5}>
+  <Carousel bind:this={carousel} {particlesToShow}>
     {#each movies as movie, i}
       <div class="h-[400px] grid relative">
         <div class="absolute inset-5 bg-slate-800 overflow-hidden">

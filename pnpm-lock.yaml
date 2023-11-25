@@ -14,6 +14,9 @@ dependencies:
   svelte-feather-icons:
     specifier: ^4.0.1
     version: 4.0.1
+  svelte-media-queries:
+    specifier: ^1.6.2
+    version: 1.6.2
   sveltekit-search-params:
     specifier: ^1.0.15
     version: 1.0.15(@sveltejs/kit@1.27.6)(svelte@4.2.7)
@@ -2110,6 +2113,10 @@ packages:
       svelte: ^3.19.0 || ^4.0.0
     dependencies:
       svelte: 4.2.7
+
+  /svelte-media-queries@1.6.2:
+    resolution: {integrity: sha512-SMz6od/vIeZEGlc4P0HKJK4G0fZotuwFhCSpBQaPqh75h6sL6sNf+4+IjbegFKXbP7b+SOfyzVOIMXTr8jynkA==}
+    dev: false
 
   /svelte-preprocess@5.1.1(postcss@8.4.31)(svelte@4.2.7)(typescript@5.3.2):
     resolution: {integrity: sha512-p/Dp4hmrBW5mrCCq29lEMFpIJT2FZsRlouxEc5qpbOmXRbaFs7clLs8oKPwD3xCFyZfv1bIhvOzpQkhMEVQdMw==}
