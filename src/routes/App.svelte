@@ -5,27 +5,30 @@
   import Carosel from "../components/carosel.svelte";
   import MovieDetail from "../components/movie-detail.svelte";
 
-  import API, { type MovieResult, type MovieResponse } from "../api";
-  console.log("🚀 ~ file: App.svelte:24 ~ API:", API);
-  import { onMount } from "svelte";
+  import type { MovieResult, MovieResponse } from "../api";
+  const getImagePath = (
+    path,
+    { w }: { w: string | number } = { w: "original" }
+  ) =>
+    `https://image.tmdb.org/t/p/${typeof w === "number" ? `w${w}` : w}${path}`;
 
   let image_url: string;
-  let movies: MovieResult[] = [];
-  let selectedMovie: MovieResponse | undefined;
+  export let movies: MovieResult[] = [];
+  let selectedMovie: MovieResult | undefined;
   let defaultMovie: MovieResult[] = [];
 
-  onMount(async () => {
-    const { results } = await API.getMovies();
-    if (!results) return;
-    selectMoive(results[0]);
-    movies = results;
-    defaultMovie = results;
-  });
+  // onMount(async () => {
+  //   const { results } = await API.getMovies();
+  //   if (!results) return;
+  //   selectMoive(results[0]);
+  //   movies = results;
+  //   defaultMovie = results;
+  // });
 
   const selectMoive = async (movie: MovieResult, e?) => {
     if (!movie) return;
-    image_url = API.getImagePath(movie.poster_path || movie.backdrop_path);
-    selectedMovie = await API.getMovie(movie.id);
+    image_url = getImagePath(movie.poster_path || movie.backdrop_path);
+    selectedMovie = movie;
     e?.target?.scrollIntoView({
       block: "center",
       behavior: "smooth",
@@ -33,13 +36,13 @@
     });
   };
   const handleSearch = async (event) => {
-    if (!selectedMovie) return;
-    selectedMovie = undefined;
-    if (!event?.detail.text) return (movies = defaultMovie);
-    const { results } = await API.searchMovies(event?.detail?.text);
-    if (!results) return;
-    selectMoive(results[0]);
-    movies = results;
+    // if (!selectedMovie) return;
+    // selectedMovie = undefined;
+    // if (!event?.detail.text) return (movies = defaultMovie);
+    // const { results } = await API.searchMovies(event?.detail?.text);
+    // if (!results) return;
+    // selectMoive(results[0]);
+    // movies = results;
   };
 </script>
 

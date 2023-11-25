@@ -6,7 +6,7 @@ import { PUBLIC_TMDB_READ_API_KEY } from '$env/static/public';
 
 const db = new MovieDb(PUBLIC_TMDB_READ_API_KEY);
 
-export default {
+export const API = {
   getMovies: () => db.moviePopular(),
   searchMovies: (q) => db.searchMovie({ query: q }),
   getImages: (args) => db.movieImages(args),
@@ -14,3 +14,4 @@ export default {
   getImagePath: (path, { w }: { w: string | number } = { w: "original" }) =>
     `https://image.tmdb.org/t/p/${typeof w === "number" ? `w${w}` : w}${path}`,
 };
+export default API;
