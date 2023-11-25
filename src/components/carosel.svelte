@@ -1,7 +1,8 @@
 <script lang="ts">
   import Carousel from "svelte-carousel";
-  import API, { type MovieResult, type MovieResponse } from "../api";
+  import type { MovieResult, MovieResponse } from "../api";
   import { createEventDispatcher } from "svelte";
+  import { getImagePath } from "$lib";
   const dispatch = createEventDispatcher();
   export let movies: MovieResult[] = [];
   export let selectedMovie: MovieResponse | undefined;
@@ -24,7 +25,7 @@
             class:opacity-100={movie.id === selectedMovie?.id}
             class:opacity-30={movie.id !== selectedMovie?.id}
             class=" cursor-pointer w-full h-full bg-no-repeat bg-center bg-cover transition-opacity aria-checked:opacity-100"
-            style="background-image: url({API.getImagePath(
+            style="background-image: url({getImagePath(
               movie.poster_path || movie.backdrop_path,
               { w: 185 }
             )});"

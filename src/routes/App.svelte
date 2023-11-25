@@ -6,11 +6,8 @@
   import MovieDetail from "../components/movie-detail.svelte";
 
   import type { MovieResult, MovieResponse } from "../api";
-  const getImagePath = (
-    path,
-    { w }: { w: string | number } = { w: "original" }
-  ) =>
-    `https://image.tmdb.org/t/p/${typeof w === "number" ? `w${w}` : w}${path}`;
+  import { getImagePath } from "$lib";
+ 
 
   let image_url: string;
   export let movies: MovieResult[] = [];

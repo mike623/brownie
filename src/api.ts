@@ -1,10 +1,10 @@
 export * from "moviedb-promise/dist/types";
 export * from "moviedb-promise/dist/request-types";
 import { MovieDb } from "moviedb-promise";
-import { PUBLIC_TMDB_READ_API_KEY } from '$env/static/public';
+import { TMDB_API_KEY } from '$env/static/private';
 
 
-const db = new MovieDb(PUBLIC_TMDB_READ_API_KEY);
+const db = new MovieDb(TMDB_API_KEY);
 
 export const API = {
   getMovies: () => db.moviePopular(),
