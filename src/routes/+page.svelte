@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { page } from '$app/stores';
-  console.log("🚀 ~ file: +page.svelte:3 ~ page:", page)
-  
+  import { page } from "$app/stores";
+  console.log("🚀 ~ file: +page.svelte:3 ~ page:", page);
+
   import App from "./App.svelte";
   import type { PageServerData } from "./$types";
   export let data: PageServerData;
+  console.log("🚀 ~ file: +page.svelte:8 ~ data:", data)
 </script>
 
 <svelte:head>
@@ -22,7 +23,7 @@
   <meta name="theme-color" content="#ffffff" />
 </svelte:head>
 
-<App movies={data.movies || []} />
+<App selectedMovie={data.movie} movies={data.movies || []} />
 
 <style>
 </style>

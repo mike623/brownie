@@ -33,7 +33,6 @@
 </script>
 
 <MediaQuery query="(min-width: 760px)" bind:matches />
-<span>{matches}</span>
 {#if movies.length > 0}
   <!-- class="flex -mx-5 px-5 py-10 post-list scrollbar scrollbar-thumb-gray-100 scrollbar-track-transparent scrollbar-thin" -->
   <Carousel bind:this={carousel} {particlesToShow}>

@@ -7,12 +7,13 @@
 
   import type { MovieResult, MovieResponse } from "../api";
   import { getImagePath } from "$lib";
- 
 
-  let image_url: string;
   export let movies: MovieResult[] = [];
-  let selectedMovie: MovieResult | undefined;
+  export let selectedMovie: MovieResult | undefined;
   let defaultMovie: MovieResult[] = [];
+  let image_url: string = selectedMovie
+    ? getImagePath(selectedMovie?.poster_path || selectedMovie?.backdrop_path)
+    : "";
 
   // onMount(async () => {
   //   const { results } = await API.getMovies();
